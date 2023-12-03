@@ -1,7 +1,6 @@
 from rest_framework import serializers
-from rest_framework.relations import SlugRelatedField
 
-from school.models import Lessons, Course, Payments
+from school.models import Payments
 
 
 class PaymentSerializer(serializers.ModelSerializer):
