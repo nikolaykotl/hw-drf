@@ -5,6 +5,7 @@ from rest_framework.routers import DefaultRouter
 from school.apps import SchoolConfig
 from school.views.lesson import *
 from school.views.course import *
+from school.views.payment import PaymentListView
 
 app_name = SchoolConfig.name
 
@@ -20,5 +21,6 @@ urlpatterns = [
     path('update/<int:pk>/', LessonUpdateView.as_view(), name='update_lesson'),
     path('create/', LessonCreateView.as_view(), name='create_lesson'),
     path('delete/<int:pk>/', LessonDeleteView.as_view(), name='delete_lesson'),
+    path('payment/', PaymentListView.as_view(), name='payment_list'),
 
               ] + router.urls
