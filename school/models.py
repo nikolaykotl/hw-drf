@@ -1,5 +1,6 @@
 from django.db import models
 
+from config import settings
 from users.models import NULLABLE, User
 
 
@@ -7,6 +8,7 @@ class Course(models.Model):
     name = models.CharField(max_length=250, verbose_name='название')
     image = models.ImageField(upload_to='HW-DRF/', verbose_name='картинка')
     description = models.TextField(verbose_name='описание', **NULLABLE)
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, **NULLABLE)
 
     class Meta:
         verbose_name = 'курс'
@@ -22,6 +24,7 @@ class Lessons(models.Model):
     image = models.ImageField(upload_to='HW-DRF/', verbose_name='картинка', null=True)
     description = models.TextField(verbose_name='описание', **NULLABLE)
     link = models.URLField(verbose_name='ссылка')
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, **NULLABLE)
 
     class Meta:
         verbose_name = 'урок'
