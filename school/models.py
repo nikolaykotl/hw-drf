@@ -6,7 +6,7 @@ from users.models import NULLABLE, User
 
 class Course(models.Model):
     name = models.CharField(max_length=250, verbose_name='название')
-    image = models.ImageField(upload_to='HW-DRF/', verbose_name='картинка')
+    image = models.ImageField(upload_to='media/', verbose_name='картинка')
     description = models.TextField(verbose_name='описание', **NULLABLE)
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, **NULLABLE)
 
@@ -21,9 +21,10 @@ class Course(models.Model):
 class Lessons(models.Model):
     course = models.ForeignKey(Course,on_delete=models.CASCADE,verbose_name='курс', **NULLABLE)
     name = models.CharField(max_length=250, verbose_name='название')
-    image = models.ImageField(upload_to='HW-DRF/', verbose_name='картинка', null=True)
+    image = models.ImageField(upload_to='media/', verbose_name='картинка', null=True)
     description = models.TextField(verbose_name='описание', **NULLABLE)
     link = models.URLField(verbose_name='ссылка')
+    url_materials = models.URLField(verbose_name='ссылка на материалы урока', **NULLABLE)
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, **NULLABLE)
 
     class Meta:
@@ -54,3 +55,14 @@ class Payments(models.Model):
 
     def __str__(self):
         return self.name
+
+class Subscription(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='пользователь', null=True)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='курс')
+
+    def __str__(self):
+        return f"{self.user}: {self.course}"
+
+    class Meta:
+        verbose_name = 'Подписка'
+        verbose_name_plural = 'Подписки'

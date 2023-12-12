@@ -6,6 +6,7 @@ from school.apps import SchoolConfig
 from school.views.lesson import *
 from school.views.course import *
 from school.views.payment import PaymentListView
+from school.views.subscription import SubscriptionCreateView, SubscriptionListView, SubscriptionDestroyView
 
 app_name = SchoolConfig.name
 
@@ -22,5 +23,8 @@ urlpatterns = [
     path('create/', LessonCreateView.as_view(), name='create_lesson'),
     path('delete/<int:pk>/', LessonDeleteView.as_view(), name='delete_lesson'),
     path('payment/', PaymentListView.as_view(), name='payment_list'),
+    path('subscriptions/create/', SubscriptionCreateView.as_view(), name='create_subscription'),
+    path('subscriptions/', SubscriptionListView.as_view(), name='list_subscription'),
+    path('subscriptions/delete/<int:pk>/', SubscriptionDestroyView.as_view(), name='delete_subscription'),
 
               ] + router.urls
