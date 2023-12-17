@@ -9,7 +9,7 @@ class Course(models.Model):
     image = models.ImageField(upload_to='media/', verbose_name='картинка')
     description = models.TextField(verbose_name='описание', **NULLABLE)
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, **NULLABLE)
-
+    price = models.FloatField(verbose_name='цена курса', default=10000)
     class Meta:
         verbose_name = 'курс'
         verbose_name_plural = 'курсы'
@@ -26,7 +26,7 @@ class Lessons(models.Model):
     link = models.URLField(verbose_name='ссылка')
     url_materials = models.URLField(verbose_name='ссылка на материалы урока', **NULLABLE)
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, **NULLABLE)
-
+    price = models.FloatField(verbose_name='цена урока', default=1000)
     class Meta:
         verbose_name = 'урок'
         verbose_name_plural = 'уроки'

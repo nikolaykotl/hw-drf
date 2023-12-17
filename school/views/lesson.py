@@ -23,7 +23,7 @@ class LessonListView(ListAPIView):
 class LessonCreateView(CreateAPIView):
     queryset = Lessons.objects.all()
     serializer_class = LessonSerializer
-    #permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]
 
     def perform_create(self, serializer):
         new_lesson = serializer.save()
