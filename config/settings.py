@@ -145,3 +145,6 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.AllowAny',
     ]
 }
+
+STRIPE_SECRET_KEY = 'sk_test_51ONH6GHovNnm9EPfrzlsQiKzdZI2dUjI8duMjL5iQUDz38udmfI8prT087BYodPQuajNNfWP7AI54FUDvgIC7WgP00QBNyWSe6'
+STRIPE_WEBHOOK_SECRET = 'whsec_3ea9a35f94f7e747ea620a5f0210effe3cf0d6b28c7f562dbaa75a376ae5a295'
