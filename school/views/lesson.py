@@ -17,7 +17,7 @@ class LessonDetailView(RetrieveAPIView):
 class LessonListView(ListAPIView):
     queryset = Lessons.objects.all()
     serializer_class = LessonListSerializer
-    permission_classes = [AllowAny] #IsAuthenticated, IsModeratorOrIsOwner]
+    permission_classes = [IsAuthenticated, IsModeratorOrIsOwner]
     pagination_class = SchoolPaginator
 
 class LessonCreateView(CreateAPIView):
@@ -34,7 +34,7 @@ class LessonCreateView(CreateAPIView):
 class LessonUpdateView(UpdateAPIView):
     queryset = Lessons.objects.all()
     serializer_class = LessonSerializer
-    #permission_classes = [IsAuthenticated, IsModeratorOrIsOwner]
+    permission_classes = [IsAuthenticated, IsModeratorOrIsOwner]
 
 class LessonDeleteView(DestroyAPIView):
     queryset = Lessons.objects.all()
